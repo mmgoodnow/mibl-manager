@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  matchup: one
+  slot: MyString
+  home_player_1: one
+  home_player_2: one
+  away_player_1: one
+  away_player_2: one
+  timestamp: 2019-12-14 21:51:49
+  status: MyString
+
+two:
+  matchup: two
+  slot: MyString
+  home_player_1: two
+  home_player_2: two
+  away_player_1: two
+  away_player_2: two
+  timestamp: 2019-12-14 21:51:49
+  status: MyString

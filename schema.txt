@@ -1,0 +1,49 @@
+role
+	league admin
+	team admin
+	player	
+status
+	not scheduled
+	scheduled
+	completed
+	forfeited
+match slot
+	singles 1
+	singles 2
+	singles 3
+	doubles 1
+	doubles 2
+
+user
+	roles
+	email
+	password
+	phone number
+	name
+
+team
+	name
+
+season
+	name
+
+membership
+	season
+	team
+	player
+
+matchup
+	season
+	home team
+	away team
+	due date
+
+match
+	parent matchup
+	match slot
+	home player 1
+	home player 2
+	away player 1
+	away player 2
+	timestamp
+	status

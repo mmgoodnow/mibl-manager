@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  season: one
+  home_team: one
+  away_team: one
+  due_date: 2019-12-14
+
+two:
+  season: two
+  home_team: two
+  away_team: two
+  due_date: 2019-12-14
