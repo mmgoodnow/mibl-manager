@@ -27,9 +27,12 @@ team
 season
 	name
 
+roster
+    team
+    season
+
 membership
-	season
-	team
+	roster
 	player
 
 matchup
@@ -47,3 +50,15 @@ match
 	away player 2
 	timestamp
 	status
+
+
+Use cases
+
+Hunter creates new season
+Hunter notifies all captains of new season
+Everyone registers
+Captains assemble rosters for their teams
+Hunter generates all matchup combinations
+For each matchup, captains assign lineups due at the beginning of biweek
+System generates matches from lineups
+System emails match groups to facilitate scheduling

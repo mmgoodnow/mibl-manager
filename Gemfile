@@ -53,6 +53,8 @@ group :test do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+
+gem 'bootstrap', '~> 4.4.1'
 gem 'devise'
 gem 'rails_admin', '~> 2.0', git: 'https://github.com/sferik/rails_admin.git'
-gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]

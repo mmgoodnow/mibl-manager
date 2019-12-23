@@ -5,4 +5,8 @@ class Roster < ApplicationRecord
   belongs_to :team, inverse_of: :rosters
   has_many :memberships, inverse_of: :roster
   has_many :players, through: :memberships
+
+  def name
+    "#{team.name} #{season.name}" if team && season
+  end
 end
