@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 class Matchup < ApplicationRecord
-  belongs_to :season
-  belongs_to :home_team, class_name: "Team"
-  belongs_to :away_team, class_name: "Team"
+  belongs_to :home_roster, class_name: 'Roster'
+  belongs_to :away_roster, class_name: 'Roster'
   has_many :matches, inverse_of: :matchup
 end

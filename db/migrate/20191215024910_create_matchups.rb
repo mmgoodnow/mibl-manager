@@ -3,9 +3,8 @@
 class CreateMatchups < ActiveRecord::Migration[6.0]
   def change
     create_table :matchups do |t|
-      t.references :season, null: false, foreign_key: true
-      t.references :home_team, null: false, foreign_key: {to_table: :teams}
-      t.references :away_team, null: false, foreign_key: {to_table: :teams}
+      t.references :home_roster, null: false, foreign_key: { to_table: :rosters }
+      t.references :away_roster, null: false, foreign_key: { to_table: :rosters }
       t.date :due_date
 
       t.timestamps
