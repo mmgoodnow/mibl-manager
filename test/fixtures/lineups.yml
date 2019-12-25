@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  roster: one
+  singles_1: one
+  singles_2: one
+  singles_3: one
+  doubles_1_1: one
+  doubles_1_2: one
+  doubles_2_1: one
+  doubles_2_2: one
+
+two:
+  roster: two
+  singles_1: two
+  singles_2: two
+  singles_3: two
+  doubles_1_1: two
+  doubles_1_2: two
+  doubles_2_1: two
+  doubles_2_2: two

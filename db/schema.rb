@@ -12,7 +12,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_191_222_164_731) do
+ActiveRecord::Schema.define(version: 20_191_223_060_046) do
+  create_table 'lineups', force: :cascade do |t|
+    t.integer 'roster_id', null: false
+    t.integer 'singles_1_id', null: false
+    t.integer 'singles_2_id', null: false
+    t.integer 'singles_3_id', null: false
+    t.integer 'doubles_1_1_id', null: false
+    t.integer 'doubles_1_2_id', null: false
+    t.integer 'doubles_2_1_id', null: false
+    t.integer 'doubles_2_2_id', null: false
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.index ['doubles_1_1_id'], name: 'index_lineups_on_doubles_1_1_id'
+    t.index ['doubles_1_2_id'], name: 'index_lineups_on_doubles_1_2_id'
+    t.index ['doubles_2_1_id'], name: 'index_lineups_on_doubles_2_1_id'
+    t.index ['doubles_2_2_id'], name: 'index_lineups_on_doubles_2_2_id'
+    t.index ['roster_id'], name: 'index_lineups_on_roster_id'
+    t.index ['singles_1_id'], name: 'index_lineups_on_singles_1_id'
+    t.index ['singles_2_id'], name: 'index_lineups_on_singles_2_id'
+    t.index ['singles_3_id'], name: 'index_lineups_on_singles_3_id'
+  end
+
   create_table 'matches', force: :cascade do |t|
     t.integer 'matchup_id', null: false
     t.integer 'home_player_1_id'
@@ -88,6 +109,14 @@ ActiveRecord::Schema.define(version: 20_191_222_164_731) do
     t.index ['reset_password_token'], name: 'index_users_on_reset_password_token', unique: true
   end
 
+  add_foreign_key 'lineups', 'rosters'
+  add_foreign_key 'lineups', 'users', column: 'doubles_1_1_id'
+  add_foreign_key 'lineups', 'users', column: 'doubles_1_2_id'
+  add_foreign_key 'lineups', 'users', column: 'doubles_2_1_id'
+  add_foreign_key 'lineups', 'users', column: 'doubles_2_2_id'
+  add_foreign_key 'lineups', 'users', column: 'singles_1_id'
+  add_foreign_key 'lineups', 'users', column: 'singles_2_id'
+  add_foreign_key 'lineups', 'users', column: 'singles_3_id'
   add_foreign_key 'matches', 'matchups'
   add_foreign_key 'matches', 'users', column: 'away_player_1_id'
   add_foreign_key 'matches', 'users', column: 'away_player_2_id'

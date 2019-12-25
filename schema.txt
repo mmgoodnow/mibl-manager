@@ -35,10 +35,20 @@ membership
 	roster
 	player
 
+lineup
+    roster
+    singles 1
+    singles 2
+    singles 3
+    doubles 1 player 1
+    doubles 1 player 2
+    doubles 2 player 1
+    doubles 2 player 2
+
 matchup
 	season
-	home team
-	away team
+	home lineup
+	away lineup
 	due date
 
 match
@@ -54,11 +64,14 @@ match
 
 Use cases
 
-Hunter creates new season
-Hunter notifies all captains of new season
-Everyone registers
-Captains assemble rosters for their teams
-Hunter generates all matchup combinations
-For each matchup, captains assign lineups due at the beginning of biweek
-System generates matches from lineups
-System emails match groups to facilitate scheduling
+Hunter creates new season - admin
+Hunter notifies all captains of new season - external for now
+Players register - devise
+Captains assemble rosters for their teams - admin
+Hunter generates all matchup combinations - admin
+For each matchup, captains assign lineups due at the beginning of biweek - admin
+System generates matches from lineups - jobs
+System emails match groups to facilitate scheduling - jobs
+Captains enter scores - jobs
+
+Home page
