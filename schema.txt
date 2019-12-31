@@ -65,7 +65,6 @@ match
 Use cases
 
 Hunter creates new season - admin
-Hunter notifies all captains of new season - external for now
 Players register - devise
 Captains assemble rosters for their teams - admin
 Hunter generates all matchup combinations - admin

@@ -5,4 +5,6 @@ class Season < ApplicationRecord
   has_many :teams, through: :rosters
   has_many :memberships, through: :rosters
   has_many :players, through: :memberships
+
+  scope :current, -> {order(created_at: :desc).first}
 end

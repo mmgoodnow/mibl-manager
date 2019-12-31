@@ -24,14 +24,14 @@ ActiveRecord::Schema.define(version: 20_191_223_060_046) do
     t.integer 'doubles_2_2_id', null: false
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
-    t.index ['doubles_1_1_id'], name: 'index_lineups_on_doubles_1_1_id'
-    t.index ['doubles_1_2_id'], name: 'index_lineups_on_doubles_1_2_id'
-    t.index ['doubles_2_1_id'], name: 'index_lineups_on_doubles_2_1_id'
-    t.index ['doubles_2_2_id'], name: 'index_lineups_on_doubles_2_2_id'
-    t.index ['roster_id'], name: 'index_lineups_on_roster_id'
-    t.index ['singles_1_id'], name: 'index_lineups_on_singles_1_id'
-    t.index ['singles_2_id'], name: 'index_lineups_on_singles_2_id'
-    t.index ['singles_3_id'], name: 'index_lineups_on_singles_3_id'
+    t.index %w[doubles_1_1_id], name: 'index_lineups_on_doubles_1_1_id'
+    t.index %w[doubles_1_2_id], name: 'index_lineups_on_doubles_1_2_id'
+    t.index %w[doubles_2_1_id], name: 'index_lineups_on_doubles_2_1_id'
+    t.index %w[doubles_2_2_id], name: 'index_lineups_on_doubles_2_2_id'
+    t.index %w[roster_id], name: 'index_lineups_on_roster_id'
+    t.index %w[singles_1_id], name: 'index_lineups_on_singles_1_id'
+    t.index %w[singles_2_id], name: 'index_lineups_on_singles_2_id'
+    t.index %w[singles_3_id], name: 'index_lineups_on_singles_3_id'
   end
 
   create_table 'matches', force: :cascade do |t|
@@ -47,21 +47,25 @@ ActiveRecord::Schema.define(version: 20_191_223_060_046) do
     t.integer 'away_score', null: false
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
-    t.index ['away_player_1_id'], name: 'index_matches_on_away_player_1_id'
-    t.index ['away_player_2_id'], name: 'index_matches_on_away_player_2_id'
-    t.index ['home_player_1_id'], name: 'index_matches_on_home_player_1_id'
-    t.index ['home_player_2_id'], name: 'index_matches_on_home_player_2_id'
-    t.index ['matchup_id'], name: 'index_matches_on_matchup_id'
+    t.index %w[away_player_1_id], name: 'index_matches_on_away_player_1_id'
+    t.index %w[away_player_2_id], name: 'index_matches_on_away_player_2_id'
+    t.index %w[home_player_1_id], name: 'index_matches_on_home_player_1_id'
+    t.index %w[home_player_2_id], name: 'index_matches_on_home_player_2_id'
+    t.index %w[matchup_id], name: 'index_matches_on_matchup_id'
   end
 
   create_table 'matchups', force: :cascade do |t|
     t.integer 'home_roster_id', null: false
     t.integer 'away_roster_id', null: false
+    t.integer 'home_lineup_id'
+    t.integer 'away_lineup_id'
     t.date 'due_date'
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
-    t.index ['away_roster_id'], name: 'index_matchups_on_away_roster_id'
-    t.index ['home_roster_id'], name: 'index_matchups_on_home_roster_id'
+    t.index %w[away_lineup_id], name: 'index_matchups_on_away_lineup_id'
+    t.index %w[away_roster_id], name: 'index_matchups_on_away_roster_id'
+    t.index %w[home_lineup_id], name: 'index_matchups_on_home_lineup_id'
+    t.index %w[home_roster_id], name: 'index_matchups_on_home_roster_id'
   end
 
   create_table 'memberships', force: :cascade do |t|
@@ -69,8 +73,8 @@ ActiveRecord::Schema.define(version: 20_191_223_060_046) do
     t.integer 'player_id', null: false
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
-    t.index ['player_id'], name: 'index_memberships_on_player_id'
-    t.index ['roster_id'], name: 'index_memberships_on_roster_id'
+    t.index %w[player_id], name: 'index_memberships_on_player_id'
+    t.index %w[roster_id], name: 'index_memberships_on_roster_id'
   end
 
   create_table 'rosters', force: :cascade do |t|
@@ -78,8 +82,8 @@ ActiveRecord::Schema.define(version: 20_191_223_060_046) do
     t.integer 'team_id', null: false
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
-    t.index ['season_id'], name: 'index_rosters_on_season_id'
-    t.index ['team_id'], name: 'index_rosters_on_team_id'
+    t.index %w[season_id], name: 'index_rosters_on_season_id'
+    t.index %w[team_id], name: 'index_rosters_on_team_id'
   end
 
   create_table 'seasons', force: :cascade do |t|
@@ -105,8 +109,9 @@ ActiveRecord::Schema.define(version: 20_191_223_060_046) do
     t.string 'reset_password_token'
     t.datetime 'reset_password_sent_at'
     t.datetime 'remember_created_at'
-    t.index ['email'], name: 'index_users_on_email', unique: true
-    t.index ['reset_password_token'], name: 'index_users_on_reset_password_token', unique: true
+    t.index %w[email], name: 'index_users_on_email', unique: true
+    t.index %w[reset_password_token],
+            name: 'index_users_on_reset_password_token', unique: true
   end
 
   add_foreign_key 'lineups', 'rosters'
@@ -122,6 +127,8 @@ ActiveRecord::Schema.define(version: 20_191_223_060_046) do
   add_foreign_key 'matches', 'users', column: 'away_player_2_id'
   add_foreign_key 'matches', 'users', column: 'home_player_1_id'
   add_foreign_key 'matches', 'users', column: 'home_player_2_id'
+  add_foreign_key 'matchups', 'lineups', column: 'away_lineup_id'
+  add_foreign_key 'matchups', 'lineups', column: 'home_lineup_id'
   add_foreign_key 'matchups', 'rosters', column: 'away_roster_id'
   add_foreign_key 'matchups', 'rosters', column: 'home_roster_id'
   add_foreign_key 'memberships', 'rosters'
