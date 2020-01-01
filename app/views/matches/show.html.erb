@@ -1,0 +1,22 @@
+<h1 class="mb-6">Match</h1>
+
+<div class="d-flex w-100 align-items-start">
+  <div class="mr-2 text-right">
+    <h2><%= @match.matchup.home_team.name %></h2>
+    <h5><%= @match.home_player_1.name %></h5>
+    <% if @match.home_player_2 %>
+      <h5><%= @match.home_player_2.name %></h5>
+    <% end %>
+  </div>
+  <h2><strong class="ml-1"><%= @match.home_score %></strong>-<strong class="mr-1"><%= @match.away_score %></strong></h2>
+  <div class="ml-2">
+    <h2><%= @match.matchup.away_team.name %></h2>
+    <h5><%= @match.away_player_1.name %></h5>
+    <% if @match.away_player_2 %>
+      <h5><%= @match.away_player_2.name %></h5>
+    <% end %>
+  </div>
+
+</div>
+<%= @match.status %>
+<%= @match.timestamp && @match.timestamp.to_time.strftime('%B %e at %l:%M %p') %>

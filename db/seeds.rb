@@ -76,6 +76,17 @@ matches =
         away_score: 0,
         slot: 'SINGLES1',
         status: 'UNSCHEDULED'
+      },
+      {
+        matchup: matchups[0],
+        home_player_1: users[0],
+        home_player_2: users[0],
+        away_player_1: users[1],
+        away_player_2: users[2],
+        home_score: 0,
+        away_score: 5,
+        slot: 'DOUBLES1',
+        status: 'COMPLETED'
       }
     ]
   )
