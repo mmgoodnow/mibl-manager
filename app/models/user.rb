@@ -24,9 +24,18 @@ class User < ApplicationRecord
            inverse_of: :away_player_2,
            class_name: 'Match',
            foreign_key: 'away_player_2_id'
+  has_many :memberships, inverse_of: :player, foreign_key: 'player_id'
+  has_many :rosters, through: :memberships
+
   def matches
     Match.unscoped.participant(self.id)
   end
-  has_many :memberships, inverse_of: :player, foreign_key: 'player_id'
-  has_many :rosters, through: :memberships
+
+  def admin?
+    self.role == 'admin'
+  end
+
+  def captain?
+    self.admin? || self.role == 'captain'
+  end
 end
