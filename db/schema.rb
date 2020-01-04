@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_23_060046) do
+ActiveRecord::Schema.define(version: 2020_01_04_073458) do
   create_table 'lineups', force: :cascade do |t|
     t.integer 'roster_id', null: false
     t.integer 'singles_1_id', null: false
@@ -57,13 +57,14 @@ ActiveRecord::Schema.define(version: 2019_12_23_060046) do
     t.integer 'away_roster_id', null: false
     t.integer 'home_lineup_id'
     t.integer 'away_lineup_id'
-    t.date 'due_date'
+    t.integer 'round_id'
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
     t.index %w[away_lineup_id], name: 'index_matchups_on_away_lineup_id'
     t.index %w[away_roster_id], name: 'index_matchups_on_away_roster_id'
     t.index %w[home_lineup_id], name: 'index_matchups_on_home_lineup_id'
     t.index %w[home_roster_id], name: 'index_matchups_on_home_roster_id'
+    t.index %w[round_id], name: 'index_matchups_on_round_id'
   end
 
   create_table 'memberships', force: :cascade do |t|
@@ -82,6 +83,16 @@ ActiveRecord::Schema.define(version: 2019_12_23_060046) do
     t.datetime 'updated_at', precision: 6, null: false
     t.index %w[season_id], name: 'index_rosters_on_season_id'
     t.index %w[team_id], name: 'index_rosters_on_team_id'
+  end
+
+  create_table 'rounds', force: :cascade do |t|
+    t.datetime 'start'
+    t.datetime 'end'
+    t.integer 'season_id', null: false
+    t.string 'name'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.index %w[season_id], name: 'index_rounds_on_season_id'
   end
 
   create_table 'seasons', force: :cascade do |t|
@@ -129,8 +140,10 @@ ActiveRecord::Schema.define(version: 2019_12_23_060046) do
   add_foreign_key 'matchups', 'lineups', column: 'home_lineup_id'
   add_foreign_key 'matchups', 'rosters', column: 'away_roster_id'
   add_foreign_key 'matchups', 'rosters', column: 'home_roster_id'
+  add_foreign_key 'matchups', 'rounds'
   add_foreign_key 'memberships', 'rosters'
   add_foreign_key 'memberships', 'users', column: 'player_id'
   add_foreign_key 'rosters', 'seasons'
   add_foreign_key 'rosters', 'teams'
+  add_foreign_key 'rounds', 'seasons'
 end

@@ -1,0 +1,19 @@
+<%= form_with model: @season, local: true do |form| %>
+  <h1>New Season</h1>
+  <div class="form-group">
+    <%= label_tag(:start_date, "Start date:") %>
+    <%= select_date Date.today, prefix: :start_date, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= label_tag("round_length", "Round length (days)") %>
+    <%= number_field_tag "round_length", 14, in: 0..28, step: 1, class: "form-control" %>
+  </div>
+  <h5>Teams:</h5>
+  <% @teams.each do |team| %>
+    <div class="form-group">
+      <%= label_tag "multiplicity_#{team.id}", team.name %>
+      <%= number_field :multiplicity, team.id, value: 1, in: 0..3, step: 1, class: "form-control" %>
+    </div>
+  <% end %>
+  <%= form.submit class: "btn btn-primary" %>
+<% end %>
