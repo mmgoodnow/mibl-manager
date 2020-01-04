@@ -9,8 +9,7 @@ class CreateMatchups < ActiveRecord::Migration[6.0]
                    null: false, foreign_key: { to_table: :rosters }
       t.references :home_lineup, foreign_key: { to_table: :lineups }
       t.references :away_lineup, foreign_key: { to_table: :lineups }
-
-      t.date :due_date
+      t.references :round, foreign_key: true
 
       t.timestamps
     end

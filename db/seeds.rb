@@ -46,6 +46,8 @@ teams =
 
 seasons = Season.create!([{ name: 'Fall 2019' }, { name: 'Spring 2020' }])
 
+rounds = Round.create!([{ season: seasons[0], name: 'Round 1' }])
+
 rosters =
   Roster.create!(
     [
@@ -63,7 +65,9 @@ memberships =
   )
 
 matchups =
-  Matchup.create!([{ home_roster: rosters[0], away_roster: rosters[1] }])
+  Matchup.create!(
+    [{ home_roster: rosters[0], away_roster: rosters[1], round: rounds[0] }]
+  )
 
 matches =
   Match.create!(
