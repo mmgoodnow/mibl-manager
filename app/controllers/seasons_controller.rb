@@ -1,0 +1,1 @@
+class SeasonsController < ApplicationController; end
