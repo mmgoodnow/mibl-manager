@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(version: 2020_01_04_073458) do
   create_table 'rosters', force: :cascade do |t|
     t.integer 'season_id', null: false
     t.integer 'team_id', null: false
+    t.integer 'number'
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
     t.index %w[season_id], name: 'index_rosters_on_season_id'

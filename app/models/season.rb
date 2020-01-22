@@ -2,10 +2,11 @@
 
 class Season < ApplicationRecord
   has_many :rosters, inverse_of: :season
-  accepts_nested_attributes_for :rosters
   has_many :teams, through: :rosters
   has_many :memberships, through: :rosters
   has_many :players, through: :memberships
+
+  validates :name, presence: true
 
   scope :current, -> { order(created_at: :desc).first }
 end
