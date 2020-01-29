@@ -24,6 +24,26 @@ class SeasonsController < ApplicationController
         )
       end
     rosters.each { |roster| puts roster.name }
+
+    number_of_rounds = number_of_rounds(rosters)
+    ymd = params[:start_date]
+    start = Date.new(ymd[:year].to_i, ymd[:month].to_i, ymd[:day].to_i)
+    rounds = []
+    (1..number_of_rounds).each do |i|
+      round_end = start + (i * params[:round_length].to_i)
+      round_start = round_end - params[:round_length].to_i
+      rounds <<
+        Round.new(
+          {
+            season: @season,
+            name: "Round #{i}",
+            start: round_start,
+            end: round_end
+          }
+        )
+    end
+    puts rounds.inspect
+    setup_round_robin_table(rosters)
   end
 
   def new
@@ -33,9 +53,30 @@ class SeasonsController < ApplicationController
 
   private
 
-  def nth_match(rosters); end
+  def nth_match_for_round(rosters, n, round)
+    if round.even?
+      [rosters[n], rosters[rosters.length - n - 1]]
+    else
+      [rosters[rosters.length - n - 1], rosters[n]]
+    end
+  end
 
-  def reorder_rosters_for_round(rosters, round); end
+  def setup_round_robin_table(rosters)
+    rosters.unshift(:bye) if rosters.length.odd?
+    rosters
+  end
+
+  def number_of_rounds(rosters)
+    rosters.length.even? ? rosters.length - 1 : rosters.length
+  end
+
+  def nth_round(rosters, round)
+    output = rosters.dup
+    first = output.shift
+    output = output.rotate(round - 1)
+    output.unshift(first)
+    output
+  end
 
   def season_params
     params.require(:season).permit(:name, :text)

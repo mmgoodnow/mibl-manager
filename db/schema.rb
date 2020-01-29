@@ -87,8 +87,8 @@ ActiveRecord::Schema.define(version: 2020_01_04_073458) do
   end
 
   create_table 'rounds', force: :cascade do |t|
-    t.datetime 'start'
-    t.datetime 'end'
+    t.date 'start'
+    t.date 'end'
     t.integer 'season_id', null: false
     t.string 'name'
     t.datetime 'created_at', precision: 6, null: false
