@@ -44,9 +44,7 @@ teams =
     ]
   )
 
-seasons = Season.create!([{ name: 'Fall 2019' }, { name: 'Spring 2020' }])
-
-rounds = Round.create!([{ season: seasons[0], name: 'Round 1' }])
+seasons = Season.create!([{ name: 'Fall 2019' }])
 
 rosters =
   Roster.create!(
@@ -61,36 +59,5 @@ memberships =
     [
       { roster: rosters[0], player: users[0] },
       { roster: rosters[1], player: users[1] }
-    ]
-  )
-
-matchups =
-  Matchup.create!(
-    [{ home_roster: rosters[0], away_roster: rosters[1], round: rounds[0] }]
-  )
-
-matches =
-  Match.create!(
-    [
-      {
-        matchup: matchups[0],
-        home_player_1: users[0],
-        away_player_1: users[1],
-        home_score: 0,
-        away_score: 0,
-        slot: 'SINGLES1',
-        status: 'UNSCHEDULED'
-      },
-      {
-        matchup: matchups[0],
-        home_player_1: users[0],
-        home_player_2: users[0],
-        away_player_1: users[1],
-        away_player_2: users[2],
-        home_score: 0,
-        away_score: 5,
-        slot: 'DOUBLES1',
-        status: 'COMPLETED'
-      }
     ]
   )

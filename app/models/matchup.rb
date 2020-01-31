@@ -11,6 +11,6 @@ class Matchup < ApplicationRecord
   has_many :matches, inverse_of: :matchup, dependent: :destroy
 
   def name
-    "#{away_team.name}@#{home_team.name}" if home_team && away_team
+    "#{away_roster.name}@#{home_roster.name}" if home_team && away_team
   end
 end

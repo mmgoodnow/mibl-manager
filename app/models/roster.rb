@@ -7,12 +7,6 @@ class Roster < ApplicationRecord
   has_many :players, through: :memberships
 
   def name
-    if team && season
-      if number
-        "#{team.name}#{self.number} #{season.name}"
-      else
-        "#{team.name} #{season.name}"
-      end
-    end
+    number ? "#{team.name}#{self.number}" : "#{team.name}" if team
   end
 end
