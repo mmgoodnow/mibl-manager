@@ -10,16 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_04_073458) do
+ActiveRecord::Schema.define(version: 2019_12_22_072924) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension 'plpgsql'
+
   create_table 'lineups', force: :cascade do |t|
-    t.integer 'roster_id', null: false
-    t.integer 'singles_1_id', null: false
-    t.integer 'singles_2_id', null: false
-    t.integer 'singles_3_id', null: false
-    t.integer 'doubles_1_1_id', null: false
-    t.integer 'doubles_1_2_id', null: false
-    t.integer 'doubles_2_1_id', null: false
-    t.integer 'doubles_2_2_id', null: false
+    t.bigint 'roster_id', null: false
+    t.bigint 'singles_1_id', null: false
+    t.bigint 'singles_2_id', null: false
+    t.bigint 'singles_3_id', null: false
+    t.bigint 'doubles_1_1_id', null: false
+    t.bigint 'doubles_1_2_id', null: false
+    t.bigint 'doubles_2_1_id', null: false
+    t.bigint 'doubles_2_2_id', null: false
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
     t.index %w[doubles_1_1_id], name: 'index_lineups_on_doubles_1_1_id'
@@ -33,11 +36,11 @@ ActiveRecord::Schema.define(version: 2020_01_04_073458) do
   end
 
   create_table 'matches', force: :cascade do |t|
-    t.integer 'matchup_id', null: false
-    t.integer 'home_player_1_id'
-    t.integer 'home_player_2_id'
-    t.integer 'away_player_1_id'
-    t.integer 'away_player_2_id'
+    t.bigint 'matchup_id', null: false
+    t.bigint 'home_player_1_id'
+    t.bigint 'home_player_2_id'
+    t.bigint 'away_player_1_id'
+    t.bigint 'away_player_2_id'
     t.datetime 'timestamp'
     t.string 'slot'
     t.string 'status', null: false
@@ -53,11 +56,11 @@ ActiveRecord::Schema.define(version: 2020_01_04_073458) do
   end
 
   create_table 'matchups', force: :cascade do |t|
-    t.integer 'home_roster_id', null: false
-    t.integer 'away_roster_id', null: false
-    t.integer 'home_lineup_id'
-    t.integer 'away_lineup_id'
-    t.integer 'round_id'
+    t.bigint 'home_roster_id', null: false
+    t.bigint 'away_roster_id', null: false
+    t.bigint 'home_lineup_id'
+    t.bigint 'away_lineup_id'
+    t.bigint 'round_id'
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
     t.index %w[away_lineup_id], name: 'index_matchups_on_away_lineup_id'
@@ -68,8 +71,8 @@ ActiveRecord::Schema.define(version: 2020_01_04_073458) do
   end
 
   create_table 'memberships', force: :cascade do |t|
-    t.integer 'roster_id', null: false
-    t.integer 'player_id', null: false
+    t.bigint 'roster_id', null: false
+    t.bigint 'player_id', null: false
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
     t.index %w[player_id], name: 'index_memberships_on_player_id'
@@ -77,8 +80,8 @@ ActiveRecord::Schema.define(version: 2020_01_04_073458) do
   end
 
   create_table 'rosters', force: :cascade do |t|
-    t.integer 'season_id', null: false
-    t.integer 'team_id', null: false
+    t.bigint 'season_id', null: false
+    t.bigint 'team_id', null: false
     t.integer 'number'
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false
@@ -89,7 +92,7 @@ ActiveRecord::Schema.define(version: 2020_01_04_073458) do
   create_table 'rounds', force: :cascade do |t|
     t.date 'start'
     t.date 'end'
-    t.integer 'season_id', null: false
+    t.bigint 'season_id', null: false
     t.string 'name'
     t.datetime 'created_at', precision: 6, null: false
     t.datetime 'updated_at', precision: 6, null: false

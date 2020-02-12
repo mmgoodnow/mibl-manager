@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="development.sqlite3" uuid="5d59d2ce-bdc5-4c2e-a571-e5955441d932">
-      <driver-ref>sqlite.xerial</driver-ref>
+    <data-source source="LOCAL" name="mibl-manager-development@localhost" uuid="fad3ad3d-27db-42c7-9814-aa3144fd4b2a">
+      <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
-      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/db/development.sqlite3</jdbc-url>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/mibl-manager-development</jdbc-url>
     </data-source>
   </component>
 </project>
