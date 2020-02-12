@@ -7,5 +7,11 @@
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://localhost:5432/mibl-manager-development</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="production" uuid="e2756ae5-1dd3-40fd-8d28-04932a42d63d">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/mibl-manager</jdbc-url>
+    </data-source>
   </component>
 </project>
