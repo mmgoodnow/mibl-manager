@@ -59,3 +59,8 @@ gem 'bootstrap', '~> 4.4.1'
 gem 'devise'
 gem 'rails_admin', '~> 2.0', git: 'https://github.com/sferik/rails_admin.git'
 gem 'cancancan'
+
+gem 'capistrano', '~> 3.11'
+gem 'capistrano-rails', '~> 1.4'
+gem 'capistrano-passenger', '~> 0.2.0'
+gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.4'
