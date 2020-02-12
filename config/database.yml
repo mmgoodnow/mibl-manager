@@ -24,7 +24,7 @@ production:
   production:
     adapter: postgresql
     encoding: utf8
-    database: mibl-manager
+    database: <%= ENV.fetch("DB_SCHEMA") %>
     pool: 5
-    username: deploy
-    password:
+    username: <%= ENV.fetch("DB_USER") %>
+    password: <%= ENV.fetch("DB_PASSWORD") %>
