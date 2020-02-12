@@ -1,4 +1,5 @@
 class SeasonsController < ApplicationController
+  before_action :authenticate_user!
   def create
     @season = Season.create!(season_params)
     puts @season.inspect

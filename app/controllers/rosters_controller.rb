@@ -1,0 +1,1 @@
+class RostersController < ApplicationController; end
