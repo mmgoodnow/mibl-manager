@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+class User < ApplicationRecord # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable # Include default devise modules. Others available are:
   devise :database_authenticatable,
          :registerable,
          :recoverable,
@@ -26,6 +24,8 @@ class User < ApplicationRecord
            foreign_key: 'away_player_2_id'
   has_many :memberships, inverse_of: :player, foreign_key: 'player_id'
   has_many :rosters, through: :memberships
+
+  validates :name, :phone, :email, presence: true
 
   def matches
     Match.unscoped.participant(self.id)

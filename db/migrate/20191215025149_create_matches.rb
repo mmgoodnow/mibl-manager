@@ -9,7 +9,7 @@ class CreateMatches < ActiveRecord::Migration[6.0]
       t.references :away_player_1, foreign_key: { to_table: :users }
       t.references :away_player_2, foreign_key: { to_table: :users }
       t.datetime :timestamp
-      t.string :slot
+      t.string :slot, null: false
       t.string :status, null: false
       t.integer :home_score, null: false
       t.integer :away_score, null: false
