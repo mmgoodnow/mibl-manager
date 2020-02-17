@@ -1,3 +1,20 @@
-<h1>Matchup</h1>
-
-<%= @matchup.name %>
+<h1>Matchup <%= @matchup.name %></h1>
+<%= @matchup.round.name %>
+<% @matchup.matches.each do |match| %>
+  <h2><%= match.slot.sub("_", " ").titleize %></h2>
+  <div class="d-flex flex-row align-items-center mb-4">
+    <div>
+      <%= render partial: 'player', object: match.home_player_1 %>
+      <% if match.home_player_2 != nil %>
+        <%= render partial: 'player', object: match.home_player_2 %>
+      <% end %>
+    </div>
+    <div class="mx-4">vs.</div>
+    <div>
+      <%= render partial: 'player', object: match.away_player_1 %>
+      <% if match.away_player_2 != nil %>
+        <%= render partial: 'player', object: match.away_player_2 %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
